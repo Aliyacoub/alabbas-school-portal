@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوابة الإلكترونية لمدرسة العباس بن عبد المطلب الثانوية للبنين</title>
+    <!-- Google Cairo Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-accent: #2563eb;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+            --body-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 15px -1px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+            --card-hover-shadow: 0 14px 28px -3px rgba(30, 58, 138, 0.15), 0 6px 12px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Hero Banner */
+        header {
+            background: var(--bg-gradient);
+            color: #ffffff;
+            padding: 48px 20px 42px;
+            text-align: center;
+            border-bottom-left-radius: 32px;
+            border-bottom-right-radius: 32px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.3px;
+        }
+
+        header h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .btec-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btec-badge {
+            background: #f59e0b;
+            color: #0f172a;
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Search Bar & Fast Filters */
+        .search-container {
+            position: relative;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 54px 16px 20px;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .search-box input:focus {
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            font-size: 1.3rem;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .quick-tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tag-btn:hover, .tag-btn.active {
+            background: #ffffff;
+            color: var(--primary-blue);
+        }
+
+        /* Section Headings */
+        .section-block {
+            margin-bottom: 38px;
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-blue);
+            border-right: 5px solid var(--primary-accent);
+            padding-right: 12px;
+        }
+
+        /* Responsive Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        /* Interactive Link Cards */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card::after {
+            content: "↗";
+            position: absolute;
+            left: 14px;
+            top: 14px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: #cbd5e1;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            transform: translate(-2px, 2px);
+        }
+
+        .card-icon {
+            font-size: 1.7rem;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background-color: #f1f5f9;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.08);
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.35;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.35;
+        }
+
+        /* Icon Custom Accent Themes */
+        .bg-ajyal { background-color: #dbeafe; color: #1d4ed8; }
+        .bg-siraj { background-color: #dcfce7; color: #15803d; }
+        .bg-btec { background-color: #f3e8ff; color: #6b21a8; }
+        .bg-teams { background-color: #ffedd5; color: #c2410c; }
+        .bg-classroom { background-color: #fee2e2; color: #b91c1c; }
+        .bg-edraak { background-color: #e0f2fe; color: #0284c7; }
+        .bg-joacademy { background-color: #fef3c7; color: #d97706; }
+        .bg-watad { background-color: #ccfbf1; color: #0d9488; }
+        .bg-abwaab { background-color: #fce7f3; color: #db2777; }
+        .bg-gov { background-color: #e2e8f0; color: #334155; }
+        .bg-facebook { background-color: #1877f2; color: #ffffff; }
+
+        /* Tool Widget: Quick Grade Calculator */
+        .widget-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 10px;
+            margin-bottom: 38px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .widget-title {
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calc-inputs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .calc-inputs input {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            width: 140px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .calc-inputs input:focus {
+            border-color: var(--primary-accent);
+        }
+
+        .calc-btn {
+            background: var(--primary-accent);
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .calc-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .calc-result {
+            margin-top: 12px;
+            font-weight: 700;
+            color: #15803d;
+            font-size: 1rem;
+        }
+
+        /* Footer & Author Credit */
+        footer {
+            margin-top: 45px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .update-tag {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .author-credit {
+            margin-top: 8px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #1e293b;
+            background: #ffffff;
+            display: inline-block;
+            padding: 6px 22px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #cbd5e1;
+        }
+
+        .author-credit span {
+            color: var(--primary-accent);
+        }
+
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-muted);
+            display: none;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            margin-top: 10px;
+        }
+
+        /* Mobile Breakpoints */
+        @media (max-width: 640px) {
+            header { padding: 35px 15px 30px; border-radius: 0 0 24px 24px; }
+            header h1 { font-size: 1.4rem; }
+            header p { font-size: 0.92rem; }
+            .grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.18rem; }
+            .search-box input { padding: 14px 48px 14px 16px; font-size: 0.95rem; }
+            .author-credit { font-size: 0.9rem; padding: 5px 15px; }
+            .calc-inputs input { width: 100%; }
+            .calc-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <span class="header-badge">المملكة الأردنية الهاشمية - وزارة التربية والتعليم - لواء قصبة اربد</span>
+            <h1>🏫 البوابة الإلكترونية لمدرسة العباس بن عبد المطلب الثانوية للبنين</h1>
+            <p>جميع المنصات التعليمية، الخدمات الحكومية، والتخصصات المهنية في مكان واحد</p>
+            
+            <div class="btec-tags">
+                <span class="btec-badge">💻 تكنولوجيا المعلومات IT (BTEC)</span>
+                <span class="btec-badge">💼 الأعمال Business (BTEC)</span>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="ابحث عن منصة، تدريب، موظفين، وزارة، BTEC، فيسبوك..." onkeyup="filterCards()">
+                </div>
+                <!-- Quick Filter Buttons -->
+                <div class="quick-tags">
+                    <button class="tag-btn active" onclick="quickFilter('')">الكل</button>
+                    <button class="tag-btn" onclick="quickFilter('btec')">بيتك BTEC</button>
+                    <button class="tag-btn" onclick="quickFilter('معلم')">خدمات المعلمين والموظفين</button>
+                    <button class="tag-btn" onclick="quickFilter('وزارة')">الوزارات والمؤسسات</button>
+                    <button class="tag-btn" onclick="quickFilter('توجيهي')">توجيهي ودراسة</button>
+                    <button class="tag-btn" onclick="quickFilter('فيسبوك')">فيسبوك المدرسة</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Search empty state fallback -->
+        <div id="noResults" class="no-results">
+            <span>🔎</span>
+            <p style="font-size: 1.1rem; font-weight: 700; margin-top: 10px;">عذراً، لم نجد أي نتائج تطابق بحثك.</p>
+            <p style="font-size: 0.9rem; margin-top: 4px;">جرب البحث بكلمات أخرى مثل "تدريب"، "الخدمة المدنية"، "التربية"، "BTEC"، أو "فيسبوك".</p>
+        </div>
+
+        <!-- 🏫 المنصات التعليمية الرسمية -->
+        <section class="section-block">
+            <h2 class="section-title">🏫 المنصات التعليمية الرسمية</h2>
+            <div class="grid">
+                <a href="https://ajyal.moe.gov.jo/emis/login.aspx" target="_blank" rel="noopener noreferrer" class="card" data-title="أجيال منصة وزارة التربية والتعليم ajyal حكومي">
+                    <div class="card-icon bg-ajyal">🟦</div>
+                    <div class="card-info">
+                        <span class="card-title">أجيال</span>
+                        <span class="card-desc">منصة وزارة التربية والتعليم الرسمية</span>
+                    </div>
+                </a>
+                <a href="https://darsak.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="درسك منصة درسك التعليمية darsak حكومي">
+                    <div class="card-icon bg-ajyal">📺</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة درسك</span>
+                        <span class="card-desc">الدروس والحصص المصورة المجانية</span>
+                    </div>
+                </a>
+                <a href="https://siraj.moe.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="سراج منصة الذكاء الاصطناعي التعليمية siraj حكومي">
+                    <div class="card-icon bg-siraj">🟩</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة سراج</span>
+                        <span class="card-desc">منصة التعلم المباشر والمساند</span>
+                    </div>
+                </a>
+                <a href="https://nccd.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="المصادر التعليمية المناهج أدلة المعلم والخطط معلم حكومي الكتب كتب">
+                    <div class="card-icon bg-siraj">📚</div>
+                    <div class="card-info">
+                        <span class="card-title">تحميل الكتب والمناهج</span>
+                        <span class="card-desc">المركز الوطني لتطوير المناهج (PDF)</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 💻💼 قسم تخصصات BTEC -->
+        <section class="section-block">
+            <h2 class="section-title">💻💼 التعليم المهني والتقني (BTEC)</h2>
+            <div class="grid">
+                <a href="https://btec.moe.gov.jo/" target="_blank" rel="noopener noreferrer" class="card" data-title="BTEC بيتك منصة التعليم المهني والتقني حكومي تكنولوجيا أعمال">
+                    <div class="card-icon bg-btec">🎓</div>
+                    <div class="card-info">
+                        <span class="card-title">بوابة BTEC - وزارة التربية</span>
+                        <span class="card-desc">إعلانات ومعلومات التعليم المهني والتقني</span>
+                    </div>
+                </a>
+                <a href="https://classroom.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Google Classroom تسليم الواجبات والتقارير btec بيتك تكنولوجيا أعمال">
+                    <div class="card-icon bg-classroom">📂</div>
+                    <div class="card-info">
+                        <span class="card-title">تسليم تقارير BTEC</span>
+                        <span class="card-desc">عبر Google Classroom للتخصصين</span>
+                    </div>
+                </a>
+                <a href="https://docs.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Google Docs كتابة التقارير btec بيتك تكنولوجيا أعمال">
+                    <div class="card-icon bg-btec">📝</div>
+                    <div class="card-info">
+                        <span class="card-title">كتابة تقارير BTEC</span>
+                        <span class="card-desc">إعداد المستندات والتكاليف المطلوب تسليمها</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Google Drive حفظ المشاريع والملفات btec بيتك تكنولوجيا أعمال">
+                    <div class="card-icon bg-ajyal">💾</div>
+                    <div class="card-info">
+                        <span class="card-title">رفع مشاريع BTEC</span>
+                        <span class="card-desc">مساحة التخزين والتجميع السحابي للطلاب</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 🚀 منصات التعلم التفاعلي والتوجيهي -->
+        <section class="section-block">
+            <h2 class="section-title">🚀 المنصات التعليمية والتفاعلية (توجيهي وصفوف)</h2>
+            <div class="grid">
+                <a href="https://www.edraak.org" target="_blank" rel="noopener noreferrer" class="card" data-title="إدراك ادراك مؤسسة الملكة رانيا edraak توجيهي">
+                    <div class="card-icon bg-edraak">💡</div>
+                    <div class="card-info">
+                        <span class="card-title">إدراك (Edraak)</span>
+                        <span class="card-desc">مساقات ودورات مجانية متكاملة</span>
+                    </div>
+                </a>
+                <a href="https://joacademy.com" target="_blank" rel="noopener noreferrer" class="card" data-title="جو أكاديمي جو اكاديمي jo academy توجيهي ثانوي">
+                    <div class="card-icon bg-joacademy">🎓</div>
+                    <div class="card-info">
+                        <span class="card-title">جو أكاديمي</span>
+                        <span class="card-desc">شرح المناهج المدرسية والتوجيهي</span>
+                    </div>
+                </a>
+                <a href="https://watad.me" target="_blank" rel="noopener noreferrer" class="card" data-title="منصة وتد watad توجيهي حصص">
+                    <div class="card-icon bg-watad">📘</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة وتد</span>
+                        <span class="card-desc">دروس تفاعلية لطلبة الثانوية العامة</span>
+                    </div>
+                </a>
+                <a href="https://abwaab.com" target="_blank" rel="noopener noreferrer" class="card" data-title="منصة أبواب ابواب abwaab توجيهي اسئلة">
+                    <div class="card-icon bg-abwaab">🚪</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة أبواب</span>
+                        <span class="card-desc">دروس قصيرة واختبارات تقييمية</span>
+                    </div>
+                </a>
+                <a href="https://asas4edu.com" target="_blank" rel="noopener noreferrer" class="card" data-title="منصة أساس اساس asas4edu اساسي">
+                    <div class="card-icon bg-siraj">✏️</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة أساس</span>
+                        <span class="card-desc">مراجعات وشروحات الصفوف الأساسية</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 👨‍🏫 خدمات الموظفين والمعلمين -->
+        <section class="section-block">
+            <h2 class="section-title">👨‍🏫 خدمات الموظفين والمعلمين</h2>
+            <div class="grid">
+                <a href="https://teachers.gov.jo/" target="_blank" rel="noopener noreferrer" class="card" data-title="منصة تدريب المعلمين الموظفين التنمية المهنية وزارة التربية والتعليم معلم">
+                    <div class="card-icon bg-siraj">🎯</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة تدريب المعلمين</span>
+                        <span class="card-desc">برامج التطوير المهني والورش التدريبية</span>
+                    </div>
+                </a>
+                <a href="https://emp.moe.gov.jo/public/P01_Home/" target="_blank" rel="noopener noreferrer" class="card" data-title="منصة الموظفين وزارة التربية والتعليم الخدمات الإلكترونية الكادر التربوي معلم">
+                    <div class="card-icon bg-ajyal">👔</div>
+                    <div class="card-info">
+                        <span class="card-title">منصة الموظفين (وزارة التربية)</span>
+                        <span class="card-desc">الخدمات الذاتية والإدارية للموظفين والمعلمين</span>
+                    </div>
+                </a>
+                <a href="https://spac.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="ديوان الخدمة المدنية هيئة الخدمة والإدارة العامة الموظفين الرواتب ترفيعات معلم">
+                    <div class="card-icon bg-gov">🏛️</div>
+                    <div class="card-info">
+                        <span class="card-title">هيئة الخدمة والإدارة العامة</span>
+                        <span class="card-desc">ديوان الخدمة المدنية - بيانات الموظف والإجازات</span>
+                    </div>
+                </a>
+                <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="النماذج الإلكترونية استمارات توثيق معلم">
+                    <div class="card-icon">📝</div>
+                    <div class="card-info">
+                        <span class="card-title">النماذج الإلكترونية</span>
+                        <span class="card-desc">استمارات وتوثيق أعمال المعلم</span>
+                    </div>
+                </a>
+                <a href="https://outlook.office.com" target="_blank" rel="noopener noreferrer" class="card" data-title="البريد الإلكتروني الوزاري أوتلوك outlook email معلم">
+                    <div class="card-icon">📧</div>
+                    <div class="card-info">
+                        <span class="card-title">البريد الإلكتروني الوزاري</span>
+                        <span class="card-desc">Outlook المخصص لمعلمي الوزارة</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 🏛️ الوزارات والجهات ذات العلاقة بالتربية والتعليم -->
+        <section class="section-block">
+            <h2 class="section-title">🏛️ الوزارات والمؤسسات الرسمية</h2>
+            <div class="grid">
+                <a href="https://moe.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="وزارة التربية والتعليم الرسمية موقع حكومي">
+                    <div class="card-icon bg-ajyal">🇯🇴</div>
+                    <div class="card-info">
+                        <span class="card-title">وزارة التربية والتعليم</span>
+                        <span class="card-desc">الموقع الرسمي للوزارة والتعاميم</span>
+                    </div>
+                </a>
+                <a href="https://mohe.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="وزارة التعليم العالي والبحث العلمي القبول الموحد جامعات وزارة">
+                    <div class="card-icon bg-siraj">🏛️</div>
+                    <div class="card-info">
+                        <span class="card-title">وزارة التعليم العالي</span>
+                        <span class="card-desc">القبول الموحد ومؤسسات التعليم العالي</span>
+                    </div>
+                </a>
+                <a href="https://modee.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="وزارة الاقتصاد الرقمي والريادة التحول الرقمي سند وزارة">
+                    <div class="card-icon bg-btec">💻</div>
+                    <div class="card-info">
+                        <span class="card-title">وزارة الاقتصاد الرقمي</span>
+                        <span class="card-desc">مبادرات التحول الرقمي والتكنولوجيا</span>
+                    </div>
+                </a>
+                <a href="https://sanad.gov.jo" target="_blank" rel="noopener noreferrer" class="card" data-title="تطبيق سند البوابة الحكومية الموحدة سند خدمات">
+                    <div class="card-icon bg-gov">📲</div>
+                    <div class="card-info">
+                        <span class="card-title">بوابة سند الحكومية</span>
+                        <span class="card-desc">المستندات والخدمات الحكومية الموحدة</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 💻 التفاعل والأدوات الرقمية -->
+        <section class="section-block">
+            <h2 class="section-title">💻 أدوات التفاعل والصفوف الرقمية</h2>
+            <div class="grid">
+                <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Microsoft Teams مايكروسوفت تيمز التواصل والتعليم">
+                    <div class="card-icon bg-teams">🟧</div>
+                    <div class="card-info">
+                        <span class="card-title">Microsoft Teams</span>
+                        <span class="card-desc">التواصل والتعليم المباشر</span>
+                    </div>
+                </a>
+                <a href="https://classroom.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Google Classroom جوجل كلاس روم الصفوف والواجبات">
+                    <div class="card-icon bg-classroom">🟥</div>
+                    <div class="card-info">
+                        <span class="card-title">Google Classroom</span>
+                        <span class="card-desc">الصفوف والواجبات المدرسية</span>
+                    </div>
+                </a>
+                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="card" data-title="Google Drive جوجل درايف الملفات التخزين السحابي معلم">
+                    <div class="card-icon bg-ajyal">📊</div>
+                    <div class="card-info">
+                        <span class="card-title">Google Drive</span>
+                        <span class="card-desc">التخزين والمشاركة السحابية</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 🧮 حاسبة سريعة للدرجات المدرسية الأردنية -->
+        <div class="widget-card">
+            <div class="widget-title">🧮 حاسبة العلامات المدرسية (حساب المجموع والمعدل)</div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">أدخل تقييمات الطالب المدرسية لحساب المجموع النهائي والمعدل المئوي المعتمد:</p>
+            <div class="calc-inputs">
+                <input type="number" id="m1" placeholder="الشهر الأول (20)">
+                <input type="number" id="m2" placeholder="الشهر الثاني (20)">
+                <input type="number" id="m3" placeholder="المشاركة (20)">
+                <input type="number" id="m4" placeholder="النهائي (40)">
+                <button class="calc-btn" onclick="calculateAverage()">احسب النتيجة</button>
+            </div>
+            <div id="calcResult" class="calc-result"></div>
+        </div>
+
+        <!-- 📱 قسم مواقع التواصل الاجتماعي للمدرسة (في النهاية) -->
+        <section class="section-block">
+            <h2 class="section-title">📱 التواصل الاجتماعي والاتصال بالمدرسة</h2>
+            <div class="grid">
+                <a href="https://web.facebook.com/alabaschool" target="_blank" rel="noopener noreferrer" class="card" data-title="فيسبوك الصفحة الرسمية مدرسة العباس بن عبد المطلب الثانوية للبنين تواصل أخبار إعلانات facebook">
+                    <div class="card-icon bg-facebook">📘</div>
+                    <div class="card-info">
+                        <span class="card-title">الصفحة الرسمية على الفيسبوك</span>
+                        <span class="card-desc">متابعة إعلانات وأنشطة المدرسة الإدارية والتعليمية</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div>
+                <span class="update-tag">آخر تحديث للروابط: 2026</span>
+            </div>
+            <div class="author-credit">
+                🛠 تم الإنشاء بواسطة <span>أ.علي يعقوب</span>
+            </div>
+            <p style="font-size: 0.82rem; opacity: 0.7; margin-top: 10px;">جميع الحقوق محفوظة - البوابة الإلكترونية لمدرسة العباس بن عبد المطلب الثانوية للبنين © 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Real-Time Search Filtering
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section-block');
+            const noResults = document.getElementById('noResults');
+            let totalVisible = 0;
+
+            cards.forEach(card => {
+                const titleData = card.getAttribute('data-title').toLowerCase();
+                if (titleData.includes(query)) {
+                    card.style.display = 'flex';
+                    totalVisible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.card[style*="display: flex"]');
+                if (query !== '' && visibleCards.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+
+            if (totalVisible === 0 && query !== '') {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Quick Filter Buttons Handler
+        function quickFilter(tag) {
+            document.getElementById('searchInput').value = tag;
+            const buttons = document.querySelectorAll('.tag-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            filterCards();
+        }
+
+        // Grade Calculator
+        function calculateAverage() {
+            const m1 = parseFloat(document.getElementById('m1').value) || 0;
+            const m2 = parseFloat(document.getElementById('m2').value) || 0;
+            const m3 = parseFloat(document.getElementById('m3').value) || 0;
+            const m4 = parseFloat(document.getElementById('m4').value) || 0;
+
+            const val1 = document.getElementById('m1').value;
+            const val2 = document.getElementById('m2').value;
+            const val3 = document.getElementById('m3').value;
+            const val4 = document.getElementById('m4').value;
+            
+            if (val1 === '' && val2 === '' && val3 === '' && val4 === '') {
+                document.getElementById('calcResult').innerText = "يرجى إدخال العلامات أولاً.";
+                return;
+            }
+
+            const total = m1 + m2 + m3 + m4;
+            let status = total >= 50 ? "ناجح 🎉" : "راسب ⚠️";
+            document.getElementById('calcResult').innerHTML = `المجموع الكلي: <strong>${total} / 100</strong> — النتيجة: <strong>${status}</strong>`;
+        }
+
+        // Open Link Safely in New Tab
+        document.addEventListener('DOMContentLoaded', function() {
+            const allCards = document.querySelectorAll('a.card');
+            
+            allCards.forEach(card => {
+                card.setAttribute('target', '_blank');
+                card.setAttribute('rel', 'noopener noreferrer');
+
+                card.addEventListener('click', function(e) {
+                    const targetUrl = this.getAttribute('href');
+                    if (targetUrl && targetUrl !== '#' && !targetUrl.startsWith('javascript:')) {
+                        e.preventDefault(); 
+                        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
